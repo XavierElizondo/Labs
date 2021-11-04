@@ -126,6 +126,7 @@ We can see below the IPSec connection is established successfully
 1. **pfsense BGP dynamic routing - status**
 
 We can see below the pfsense firewall talks BGP with the Azure VPN gateway (AS 65515). We also see the pfsense firewall learns the routes advertised from the Azure VPN Gateway (BGP Peer IP 192.168.54.14); the **Hub VNet address spaces** (192.168.54.0/23 and 192.168.56.0/23), the **Spoke VNet** (10.50.0.0/24)
+
 ![BGP status - 1](./media/pfsense-bgp-status-1.png)
 ![BGP status - 2](./media/pfsense-bgp-status-2.png)
 ![BGP status - 3](./media/pfsense-bgp-status-3.png)
