@@ -32,13 +32,14 @@ This is a summary of the components:
 
 1. **Surface Laptop.** I initially started with Windows 10 Enterprise, but recently upgraded to Windows 11 Enterprise without any issues or changes.
     1. **Network adapters.** Both, wireless and wired network adapters in my laptop are used. I rely on a Surface Dock for the wired adapter because this laptop does not come with one. Also there's a dependency to stay docked for this lab to work.
-    2. **Hyper-V.** Hyper-V role ia enabled.
+    2. **Hyper-V.** Hyper-V role is enabled.
     3. **Network adapters.** 2 virtual switches created, one External Switch (mapped to the wired adapter) and the Default Internal Switch (mapped wireless adapter)
-2. **pfsense firewall Hyper-V VM.** Used to establish IPSec VPN with Azure
+2. **Windows 10 Hyper-V VM.** Used for connectivity testing. This VM is connected to the Hyper-V internal network
+3. **pfsense firewall Hyper-V VM.** Used to establish IPSec VPN with Azure
     1. **Network adapters.** Uses 2 network interfaces, connected to the Hyper-V Internal and External Switch respectively
     2. **Dynamic Routing Package** You'd need to install a package in order to use BGP dynamic routing for the VPN tunnel. You can also do static routing, if desired. In my lab I'm using OpenBGPD. Although I believe it is no longer supported with pfsense. I will work on switching to FRR which is a supported package and update this repo, but functionality and the end result should be the same.
-3. **AT&T Gateway.** My ISP is AT&T and they provide a Gateway/Router that has built-in PAT/NAT features
-4. **Azure Subscription**
+4. **AT&T Gateway.** My ISP is AT&T and they provide a Gateway/Router that has built-in PAT/NAT features
+5. **Azure Subscription**
     1. **Hub and Spoke network topology.** An operational Hub VNet with peering to a spoke VNet
     2. **VPN Gateway.** An Azure Virtual Network Gateway deployed in the Hub VNet. For [routed-based (dynamic routing)](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-vpn-faq#what-is-a-route-based-dynamic-routing-gateway) with BGP the [minimum SKU supported is VpnGw1](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-about-vpngateways#benchmark).
 
@@ -58,7 +59,7 @@ This is a summary of the components:
     1. **pfsense firewall VM.** The pfsense VM has the 2 adapters configured as below in Hyper-V
     ![pfsense firewall VM - Internal NIC](./media/pfsense-hyper-v-nic-internal.png)
     ![pfsense firewall VM - External NIC](./media/pfsense-hyper-v-nic-external.png)
-    2. **Windows  10 VM.** It is very much the same as pfsense Internal NIC
+    2. **Windows  10 VM.** This VM NIC is configured the same as pfsense Internal NIC
 4. **pfsense firewall configuration.**
     1. **Interfaces.** These are the configured interfaces. Note that the OPT1 interface is a Virtual Tunnel Interface (VTI) that is created when the IPSec tunnel is configured.
         ![BGP package - info](./media/pfsense-interfaces.png)
